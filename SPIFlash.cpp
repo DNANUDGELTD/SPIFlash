@@ -156,6 +156,7 @@ uint8_t* SPIFlash::readUniqueId()
 boolean SPIFlash::readByte(uint32_t addr, uint8_t* result) {
   if (command(SPIFLASH_ARRAYREADLOWFREQ))
   {
+    SPI.transfer(addr >> 24);
     SPI.transfer(addr >> 16);
     SPI.transfer(addr >> 8);
     SPI.transfer(addr);
@@ -169,6 +170,7 @@ boolean SPIFlash::readByte(uint32_t addr, uint8_t* result) {
 boolean SPIFlash::readBytes(uint32_t addr, void* buf, uint16_t len) {
   if (command(SPIFLASH_ARRAYREAD))
   {
+    SPI.transfer(addr >> 24);
     SPI.transfer(addr >> 16);
     SPI.transfer(addr >> 8);
     SPI.transfer(addr);
@@ -238,6 +240,7 @@ uint8_t SPIFlash::readStatus()
 boolean SPIFlash::writeByte(uint32_t addr, uint8_t byt) {
   if (command(SPIFLASH_BYTEPAGEPROGRAM, true))  // Byte/Page Program
   {
+    SPI.transfer(addr >> 24);
     SPI.transfer(addr >> 16);
     SPI.transfer(addr >> 8);
     SPI.transfer(addr);
@@ -261,6 +264,7 @@ uint16_t SPIFlash::writeBytes(uint32_t addr, const void* buf, uint16_t len) {
     n = (len<=maxBytes) ? len : maxBytes;
     if (command(SPIFLASH_BYTEPAGEPROGRAM, true))  // Byte/Page Program
     {
+      SPI.transfer(addr >> 24);
       SPI.transfer(addr >> 16);
       SPI.transfer(addr >> 8);
       SPI.transfer(addr);
@@ -298,6 +302,7 @@ boolean SPIFlash::chipErase() {
 boolean SPIFlash::blockErase4K(uint32_t addr) {
   if (command(SPIFLASH_BLOCKERASE_4K, true)) // Block Erase
   {
+    SPI.transfer(addr >> 24);
     SPI.transfer(addr >> 16);
     SPI.transfer(addr >> 8);
     SPI.transfer(addr);
@@ -310,6 +315,7 @@ boolean SPIFlash::blockErase4K(uint32_t addr) {
 boolean SPIFlash::blockErase32K(uint32_t addr) {
   if (command(SPIFLASH_BLOCKERASE_32K, true)) // Block Erase
   {
+    SPI.transfer(addr >> 24);
     SPI.transfer(addr >> 16);
     SPI.transfer(addr >> 8);
     SPI.transfer(addr);
@@ -322,6 +328,7 @@ boolean SPIFlash::blockErase32K(uint32_t addr) {
 boolean SPIFlash::blockErase64K(uint32_t addr) {
   if (command(SPIFLASH_BLOCKERASE_64K, true)) // Block Erase
   {
+    SPI.transfer(addr >> 24);
     SPI.transfer(addr >> 16);
     SPI.transfer(addr >> 8);
     SPI.transfer(addr);
