@@ -101,12 +101,12 @@ boolean SPIFlash::initialize()
   wakeup();
   
   if (_jedecID == 0 || readDeviceId() == _jedecID) {
-    if (command(SPIFLASH_STATUSWRITE, true)) // Write Status Register
-    {
-      SPI.transfer(0);                     // Global Unprotect
-      unselect();
+//     if (command(SPIFLASH_STATUSWRITE, true)) // Write Status Register
+//     {
+//       SPI.transfer(0);                     // Global Unprotect
+//       unselect();
       return true;
-    }
+//     }
   }
   return false;
 }
