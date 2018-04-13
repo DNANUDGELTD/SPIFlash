@@ -70,7 +70,7 @@
 #define SPIFLASH_WRITEDISABLE     0x04        // write disable
 
 #define SPIFLASH_BLOCKERASE_4K    0x21        // erase one 4K block of flash memory
-#define SPIFLASH_BLOCKERASE_32K   0x52        // erase one 32K block of flash memory
+#define SPIFLASH_BLOCKERASE_32K   0x53        // erase one 32K block of flash memory
 #define SPIFLASH_BLOCKERASE_64K   0xDC        // erase one 64K block of flash memory
 #define SPIFLASH_CHIPERASE        0x60        // chip erase (may take several seconds depending on size)
                                               // but no actual need to wait for completion (instead need to check the status register BUSY bit)
