@@ -274,8 +274,16 @@ uint16_t SPIFlash::writeBytes(uint32_t addr, const void* buf, uint16_t len) {
     }
     else
     {
-      return len; // Return unwritten number of bytes;
+      if ( writingRetry++ < 10 ) {  // Allowing retry 10 times
+        continue;
+      }
+      else
+      {
+        return len; // Return unwritten number of bytes;
+      }
     }
+
+    writingRetry = 0;
     unselect();
     
     addr+=n;  // adjust the addresses and remaining bytes by what we've just transferred.

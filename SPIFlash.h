@@ -105,6 +105,7 @@ public:
   boolean blockErase64K(uint32_t addr);
   uint16_t readDeviceId();
   uint8_t* readUniqueId();
+  uint8_t writingRetry;
   
   boolean sleep();
   boolean wakeup();
