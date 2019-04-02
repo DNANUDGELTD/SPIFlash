@@ -261,6 +261,10 @@ uint16_t SPIFlash::writeBytes(uint32_t addr, const void* buf, uint16_t len) {
   uint16_t offset = 0;
   while (len>0)
   {
+    #ifdef INC_FREERTOS_H
+    while (busy()) {delay(1);}
+    #endif
+    
     n = (len<=maxBytes) ? len : maxBytes;
     if (command(SPIFLASH_BYTEPAGEPROGRAM, true))  // Byte/Page Program
     {
